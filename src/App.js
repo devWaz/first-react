@@ -45,7 +45,6 @@ class App extends Component {
 
     let people = null;
     if(this.state.showPerson){
-      
        people = <div>
         <Person 
          changed = {this.nameChangedHandler}
@@ -58,7 +57,6 @@ class App extends Component {
          name = {this.state.persons[2].name}
          age = {this.state.persons[2].age}/>
         </div> 
-     
     }
 
   return (
