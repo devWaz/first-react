@@ -10,13 +10,13 @@ class App extends Component {
         {name:'Anu', age:29},
         {name:'Deeman', age:15}
       ],
-      otherState: 'something'
+      showPerson : false
     }
 
     switchNameHandler = (newName) =>{
       this.setState({
         persons: [
-        {name:'Waz', age:7},
+        {name:newName, age:7},
         {name:'Anuoluwa', age:19},
         {name: newName, age:35}
           ]
@@ -33,24 +33,42 @@ class App extends Component {
         })
     };
   
+    showPersonHandler = () =>{
+      const doesShow = this.state.showPerson
+
+      this.setState({
+        showPerson : !doesShow
+      })
+    }
 
   render(){
+
+    let people = null;
+    if(this.state.showPerson){
+      
+       people = <div>
+        <Person 
+         changed = {this.nameChangedHandler}
+         name = {this.state.persons[0].name}
+         age = {this.state.persons[0].age}/>
+         <Person
+         name = {this.state.persons[1].name}
+         age = {this.state.persons[1].age}/>
+         <Person
+         name = {this.state.persons[2].name}
+         age = {this.state.persons[2].age}/>
+        </div> 
+     
+    }
+
   return (
     <div className="App">
         <h1>Hello, World! I'm devWaz</h1>
-        <h4>This is my first React App!</h4>
-        <button onClick={this.switchNameHandler.bind(this , 'Wizkid')}> Click Here </button>
+        <button onClick={this.showPersonHandler}> Switch </button>
+        {people}
         
-        <Person 
-        changed ={this.nameChangedHandler}
-        name= {this.state.persons[0].name}
-        age= {this.state.persons[0].age}/>
-        <Person
-        name= {this.state.persons[1].name}
-        age= {this.state.persons[1].age}/>
-        <Person
-        name= {this.state.persons[2].name}
-        age= {this.state.persons[2].age}/>
+     
+
     </div>
   );
 }
